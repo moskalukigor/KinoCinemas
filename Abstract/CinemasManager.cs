@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cinemas.Abstract
 {
-    class CinemasManager : AbstractManager
+    class CinemasManager : AbstractManager, ICinemasManager
     {        
         public CinemasManager(string connectionString) : base(connectionString) { }
 
