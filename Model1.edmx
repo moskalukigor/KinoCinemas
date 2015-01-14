@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Igor_Moskaluk_DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Igor_Moskaluk_DBModelStoreContainer">
+          <EntitySet Name="Cinemas" EntityType="Igor_Moskaluk_DBModel.Store.Cinemas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Movie" EntityType="Igor_Moskaluk_DBModel.Store.Movie" store:Type="Tables" store:Schema="dbo" store:Name="Movie">
+            <DefiningQuery>SELECT 
+      [Movie].[Id] AS [Id], 
+      [Movie].[Name] AS [Name], 
+      [Movie].[Genre] AS [Genre], 
+      [Movie].[Price] AS [Price], 
+      [Movie].[Lenght] AS [Lenght], 
+      [Movie].[CinemaId] AS [CinemaId]
+      FROM [dbo].[Movie] AS [Movie]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Movie__CinemaId__469D7149" Association="Igor_Moskaluk_DBModel.Store.FK__Movie__CinemaId__469D7149">
+            <End Role="Cinemas" EntitySet="Cinemas" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cinemas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Igor_Moskaluk_DB.dbo.Movie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="CinemaId" />
+            <PropertyRef Name="Lenght" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="64" />
+          <Property Name="Price" Type="decimal" Nullable="false" />
+          <Property Name="Lenght" Type="decimal" Nullable="false" />
+          <Property Name="CinemaId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Movie__CinemaId__469D7149">
+          <End Role="Cinemas" Type="Igor_Moskaluk_DBModel.Store.Cinemas" Multiplicity="1" />
+          <End Role="Movie" Type="Igor_Moskaluk_DBModel.Store.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinemas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="CinemaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Igor_Moskaluk_DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Igor_Moskaluk_DBEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cinemas" EntityType="Igor_Moskaluk_DBModel.Cinemas" />
+          <EntitySet Name="Movie" EntityType="Igor_Moskaluk_DBModel.Movie" />
+          <AssociationSet Name="FK__Movie__CinemaId__469D7149" Association="Igor_Moskaluk_DBModel.FK__Movie__CinemaId__469D7149">
+            <End Role="Cinemas" EntitySet="Cinemas" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cinemas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Movie" Relationship="Igor_Moskaluk_DBModel.FK__Movie__CinemaId__469D7149" FromRole="Cinemas" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="CinemaId" />
+            <PropertyRef Name="Lenght" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Genre" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Lenght" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CinemaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cinemas" Relationship="Igor_Moskaluk_DBModel.FK__Movie__CinemaId__469D7149" FromRole="Movie" ToRole="Cinemas" />
+        </EntityType>
+        <Association Name="FK__Movie__CinemaId__469D7149">
+          <End Role="Cinemas" Type="Igor_Moskaluk_DBModel.Cinemas" Multiplicity="1" />
+          <End Role="Movie" Type="Igor_Moskaluk_DBModel.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinemas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="CinemaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Igor_Moskaluk_DBModelStoreContainer" CdmEntityContainer="Igor_Moskaluk_DBEntities1">
+          <EntitySetMapping Name="Cinemas">
+            <EntityTypeMapping TypeName="Igor_Moskaluk_DBModel.Cinemas">
+              <MappingFragment StoreEntitySet="Cinemas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie">
+            <EntityTypeMapping TypeName="Igor_Moskaluk_DBModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Lenght" ColumnName="Lenght" />
+                <ScalarProperty Name="CinemaId" ColumnName="CinemaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
