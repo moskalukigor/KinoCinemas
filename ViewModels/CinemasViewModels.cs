@@ -11,8 +11,8 @@ namespace Cinemas.ViewModels
     {
         private readonly ICinemasManager _cinemasManager;
 
-        List<CinemasModel> _items = null;
-        List<Cinemas> _items = null;
+        List<CinemasModel> _cinemasModel = null;
+        List<Cinemas> _cinemas = null;
 
         public List<CinemasModel> CreateCinemasModel(IEnumerable<Cinemas> cinemas)
         {
@@ -33,6 +33,19 @@ namespace Cinemas.ViewModels
             }
 
             return listCinemasModel;
+        }
+
+        public IEnumerable<Cinemas> CINEMAS
+        {
+            get
+            {
+                if (_cinemas == null)
+                {
+                    _cinemas = _cinemasManager.GetAll().ToList();
+                    return _cinemasManager.GetAll();
+                }
+                return _cinemas;
+            }
         }
 
 

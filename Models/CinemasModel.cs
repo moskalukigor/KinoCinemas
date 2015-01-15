@@ -9,15 +9,10 @@ namespace Cinemas.Models
     public class CinemasModel
     {
         #region Ctor
-        public CinemasModel(int id, string name/*, string nameMovie, string nameCinema, string genre, decimal price, decimal lenght*/)
+        public CinemasModel(int id, string name)
         {
             this.ID = id;
             this.Name = name;
-            /*this.NameCinema = nameCinema;
-            this.Genre = genre;
-            this.Price = price;
-            this.Lenght = lenght;*/
-
         }
         #endregion Ctor
 

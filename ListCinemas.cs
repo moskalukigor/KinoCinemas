@@ -12,10 +12,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 
+using System.Data.Entity;
+
 
 namespace Cinemas
 {
-    public partial class Form1 : Form
+    public partial class ListCinemas : Form
     {
 
         static string connectionString =
@@ -23,34 +25,26 @@ namespace Cinemas
 
         static public ICinemasManager cinemasManager = new CinemasManager(connectionString);
 
+        static public CinemasViewModels cinemasViewModels = null;
 
-        public Form1()
+        public ListCinemas()
         {
             InitializeComponent();
         }
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
 
-                CinemasViewModels = new CinemasViewModels();
-                inExViewModel = new InExViewModel(
-                    customerManager, orderItemManager, orderManager);
+                cinemasViewModels = new CinemasViewModels();
 
-                this.Title = "Каталог Товаров";
+                string _cmbList = cinemasViewModels.CINEMAS.Select(s => s.Id + " " + s.Name+ "\n").ToString();
 
-                List<string> _cmbList = catalogViewModel.Categories.Where(c => c.ParentId == (int?)null)// == c.ParentID)
-                    .OrderBy(c => c.Name)
-                    .Select(c => c.Name).ToList();
-
-                _cmbList.Insert(0, "Все Товары");
-                vwCatalog.cmbCategory.DataContext = _cmbList;
-                vwCatalog.cmbCategory.SelectedIndex = 0;
-
-
-                vwCatalog.dgUCCatalog.DataContext = catalogViewModel.Catalog;
-                vwImport.dgUCModule2_Import.DataContext = inExViewModel.InEx;
+                //MessageBox.Show(_cmbList);
             }
             catch (Exception ex)
             {
