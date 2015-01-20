@@ -24,8 +24,10 @@ namespace Cinemas
             ConfigurationManager.ConnectionStrings["Igor_Moskaluk_DBEntities1"].ConnectionString;
 
         static public ICinemasManager cinemasManager = new CinemasManager(connectionString);
+        static public IMovieManager movieManager = new MovieManager(connectionString);
 
         static public CinemasViewModels cinemasViewModels = null;
+        static public MovieViewModel movieViewModels = null;
 
         public ListCinemas()
         {
@@ -40,11 +42,13 @@ namespace Cinemas
             try
             {
 
-                cinemasViewModels = new CinemasViewModels();
 
-                string _cmbList = cinemasViewModels.CINEMAS.Select(s => s.Id + " " + s.Name+ "\n").ToString();
+                cinemasViewModels = new CinemasViewModels(cinemasManager);
+                movieViewModels = new MovieViewModel(movieManager);
 
-                //MessageBox.Show(_cmbList);
+
+                //string _cmbList = cinemasViewModels.CINEMAS.Select(s => s.Id + " " + s.Name+ "\n").ToString();
+                dgView.DataSource = movieViewModels.ListMovie;
             }
             catch (Exception ex)
             {

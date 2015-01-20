@@ -13,10 +13,10 @@ namespace Cinemas
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Igor_Moskaluk_DBEntities1 : DbContext
+    public partial class Igor_Moskaluk_DBEntities : DbContext
     {
-        public Igor_Moskaluk_DBEntities1()
-            : base("name=Igor_Moskaluk_DBEntities1")
+        public Igor_Moskaluk_DBEntities()
+            : base("name=Igor_Moskaluk_DBEntities")
         {
         }
     

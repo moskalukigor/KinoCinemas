@@ -36,8 +36,8 @@
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="Price" />
-            <PropertyRef Name="CinemaId" />
             <PropertyRef Name="Lenght" />
+            <PropertyRef Name="CinemaId" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="128" />
@@ -63,7 +63,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Igor_Moskaluk_DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Igor_Moskaluk_DBEntities1" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="Igor_Moskaluk_DBEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Cinemas" EntityType="Igor_Moskaluk_DBModel.Cinemas" />
           <EntitySet Name="Movie" EntityType="Igor_Moskaluk_DBModel.Movie" />
           <AssociationSet Name="FK__Movie__CinemaId__469D7149" Association="Igor_Moskaluk_DBModel.FK__Movie__CinemaId__469D7149">
@@ -83,8 +83,8 @@
           <Key>
             <PropertyRef Name="Id" />
             <PropertyRef Name="Price" />
-            <PropertyRef Name="CinemaId" />
             <PropertyRef Name="Lenght" />
+            <PropertyRef Name="CinemaId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
@@ -111,7 +111,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Igor_Moskaluk_DBModelStoreContainer" CdmEntityContainer="Igor_Moskaluk_DBEntities1">
+        <EntityContainerMapping StorageEntityContainer="Igor_Moskaluk_DBModelStoreContainer" CdmEntityContainer="Igor_Moskaluk_DBEntities">
           <EntitySetMapping Name="Cinemas">
             <EntityTypeMapping TypeName="Igor_Moskaluk_DBModel.Cinemas">
               <MappingFragment StoreEntitySet="Cinemas">

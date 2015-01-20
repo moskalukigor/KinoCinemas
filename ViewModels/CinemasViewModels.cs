@@ -35,6 +35,24 @@ namespace Cinemas.ViewModels
             return listCinemasModel;
         }
 
+        public CinemasViewModels(ICinemasManager cinemasManager)
+        {
+            _cinemasManager = cinemasManager;
+
+        }
+
+        public IEnumerable<CinemasModel> ListCinemas
+        {
+            get
+            {
+                if (_cinemasModel == null)
+                {
+                    _cinemasModel = CreateCinemasModel(_cinemasManager.GetAll());
+                }
+                return _cinemasModel;
+            }
+        }
+
         public IEnumerable<Cinemas> CINEMAS
         {
             get
