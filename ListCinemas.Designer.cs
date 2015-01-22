@@ -35,16 +35,19 @@
             // dgView
             // 
             this.dgView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgView.Location = new System.Drawing.Point(12, 13);
+            this.dgView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgView.Location = new System.Drawing.Point(0, 0);
             this.dgView.Name = "dgView";
-            this.dgView.Size = new System.Drawing.Size(671, 236);
+            this.dgView.RowHeadersVisible = false;
+            this.dgView.Size = new System.Drawing.Size(528, 261);
             this.dgView.TabIndex = 0;
             // 
             // ListCinemas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 261);
+            this.ClientSize = new System.Drawing.Size(528, 261);
             this.Controls.Add(this.dgView);
             this.Name = "ListCinemas";
             this.Text = "Cinemas";
@@ -57,6 +60,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgView;
+
     }
 }
 

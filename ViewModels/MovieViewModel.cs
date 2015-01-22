@@ -11,16 +11,20 @@ namespace Cinemas.ViewModels
     public class MovieViewModel
     {
         private readonly IMovieManager _movieManager;
+        private readonly ICinemasManager _cinemasManager;
 
         List<MovieModel> _movieModel = null;
         List<Movie> _movie = null;
+        List<Cinemas> _cinemas = null;
 
-        public List<MovieModel> CreateMovieModel(IEnumerable<Movie> movie)
+        public List<MovieModel> CreateMovieModel(IEnumerable<Movie> movie, IEnumerable<Cinemas> cinemas)
         {
             List<MovieModel> listMovieModel = new List<MovieModel>();
 
             var _res =
                 from c in movie
+                join m in cinemas
+                    on c.CinemaId equals m.Id
                 select new
                 {
                     Id = c.Id,
@@ -28,7 +32,7 @@ namespace Cinemas.ViewModels
                     Genre = c.Genre,
                     Price = c.Price,
                     Lenght = c.Lenght,
-                    CinemaId = c.CinemaId
+                    CinemaId = m.Name
                 };
 
             foreach (var c in _res)
@@ -40,9 +44,10 @@ namespace Cinemas.ViewModels
             return listMovieModel;
         }
 
-        public MovieViewModel(IMovieManager movieManager)
+        public MovieViewModel(IMovieManager movieManager, ICinemasManager cinemasManager)
         {
             _movieManager = movieManager;
+            _cinemasManager = cinemasManager;
         }
 
         public IEnumerable<MovieModel> ListMovie
@@ -51,7 +56,7 @@ namespace Cinemas.ViewModels
             {
                 if (_movieModel == null)
                 {
-                    _movieModel = CreateMovieModel(_movieManager.GetAll());
+                    _movieModel = CreateMovieModel(_movieManager.GetAll(), _cinemasManager.GetAll());
                 }
                 return _movieModel;
             }

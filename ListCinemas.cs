@@ -43,12 +43,12 @@ namespace Cinemas
             {
 
 
-                cinemasViewModels = new CinemasViewModels(cinemasManager);
-                movieViewModels = new MovieViewModel(movieManager);
+                //cinemasViewModels = new CinemasViewModels(cinemasManager);
+                movieViewModels = new MovieViewModel(movieManager, cinemasManager);
 
 
-                //string _cmbList = cinemasViewModels.CINEMAS.Select(s => s.Id + " " + s.Name+ "\n").ToString();
                 dgView.DataSource = movieViewModels.ListMovie;
+                dgView.Columns[0].Width = 25;
             }
             catch (Exception ex)
             {
